@@ -15,34 +15,27 @@ let inSession = false;
 
 function switchPlayAndPause() {
 	currentlyTicking = !currentlyTicking;
-	if (currentlyTicking) {
-		playBtn.classList.remove('fa-play');
-		playBtn.classList.add('fa-pause');
-		timeout = setTimeout(()=>tick(), 1000);
-	} else {
-		playBtn.classList.remove('fa-pause');
-		playBtn.classList.add('fa-play');
-		clearTimeout(timeout);
-	}
+
+	if (currentlyTicking) timeout = setTimeout(()=>tick(), 1000); 
+	else clearTimeout(timeout);
+
+	playBtn.classList.toggle('fa-pause');
+	playBtn.classList.toggle('fa-play');
 }
 function tick() {
 	let time = parseTimer();
 
-	if (time == 0) {
-		switchClock();
-	} else {
-		timer.textContent = formatted(time);
-	}
+	if (time == 0) switchClock();
+	else timer.textContent = formatted(time);
 
-	if (currentlyTicking) {
-		timeout = setTimeout(()=>tick(), 1000);
-	}
+	if (currentlyTicking) timeout = setTimeout(()=>tick(), 1000);
 }
 function parseTimer() {
 	const clock = timer.textContent.split(':');
 	if (clock.length == 3) {
 		return parseInt(clock[0]*3600) + parseInt(clock[1]*60) + parseInt(clock[2]);
-	} else if (clock.length == 2) {
+	}
+	else if (clock.length == 2) {
 		return parseInt(clock[0]*60) + parseInt(clock[1]);
 	} else {
 		return parseInt(clock[0]);
@@ -73,29 +66,26 @@ function formatted(time) {
 	seconds = time;
 
 	if (hours) {
-		return addZeros(hours)+':'+addZeros(minutes)+':'+addZeros(seconds);
+		return addZero(hours)+':'+addZero(minutes)+':'+addZero(seconds);
 	} else if (minutes) {
-		return addZeros(minutes)+':'+addZeros(seconds);
+		return addZero(minutes)+':'+addZero(seconds);
 	} else {
-		return addZeros(seconds);
+		return addZero(seconds);
 	}
 }
-function addZeros(n) {
-	return n < 10 ? '0'+n : n;
+function addZero(n) {
+	return n < 10 ? "0" + n : n;
 }
 function setTimer(time) {
 	let minutes = time%60 < 10 ? "0" + time%60 : time%60;
-	
-	if (time < 60) {
-		timer.textContent = `${time}:00`;
-	} else {
-		timer.textContent = `${Math.floor(time/60)}:${minutes}:00`;
-	}
+
+	if (time < 60) timer.textContent = `${time}:00`;
+	else timer.textContent = `${Math.floor(time/60)}:${minutes}:00`;
 }
 function stopTimer() {
 	inSession = false;
-	if (currentlyTicking) clearTimeout(timeout);
 	currentlyTicking = false;
+	clearTimeout(timeout);
 	timerLabel.textContent = 'Session';
 	playBtn.classList.remove('fa-pause');
 	playBtn.classList.add('fa-play');
