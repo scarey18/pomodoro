@@ -1,0 +1,42 @@
+<!DOCTYPE.html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<link href="reset.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="flex-container">
+		<div class="clock-container">
+			<h1>Pomodoro Clock</h1>
+			<div class="adjuster dashboard">
+				<div class="adj upper">
+					<p>Session</p>
+					<p>Break</p>
+				</div>
+				<div class="adj lower">
+					<div class="btn" id="session-down">▼</div>
+					<div class="num" id="session-time">25</div>
+					<div class="btn" id="session-up">▲</div>
+					<div class="btn" id="break-down">▼</div>
+					<div class="num" id="break-time">5</div>
+					<div class="btn" id="break-up">▲</div>
+				</div>
+			</div>
+			<div class="clock dashboard">
+				<div class="clock-buttons">
+					<i class="btn fa fa-play" id="play"></i>
+					<div class="btn" id="stop">&#9632;</div>
+					<div class="btn" id="reset">&#8635;</div>
+				</div>
+				<p id="timer-label">Session</p>
+				<div class="num" id="timer">25:00</div>
+			</div>
+		</div>
+	</div>
+	<script src="script.js"></script>
+</body>
+</html>
